@@ -8,8 +8,16 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const BASE_API_URL = process.env.BASE_API_URL || "https://botai.smartdataautomation.com/api_backend_ai";
 const REPORT_ID = process.env.REPORT_ID || "119";
-const API_TOKEN = process.env.API_TOKEN;
-const JSON_TO_EXCEL_TOKEN = process.env.JSON_TO_EXCEL_TOKEN;
+
+// Acepta la variable con o sin el prefijo "Token " y sin espacios de sobra,
+// para evitar duplicarlo al armar el header de Authorization.
+function normalizeToken(raw) {
+    if (!raw) return "";
+    return raw.trim().replace(/^Token\s+/i, "");
+}
+
+const API_TOKEN = normalizeToken(process.env.API_TOKEN);
+const JSON_TO_EXCEL_TOKEN = normalizeToken(process.env.JSON_TO_EXCEL_TOKEN);
 
 if (!API_TOKEN) {
     console.warn("⚠️  API_TOKEN no está configurado. Define la variable de entorno API_TOKEN.");
