@@ -1,8 +1,8 @@
-// Endpoint local del proxy (rama Proxy corriendo en tu máquina):
-const PROXY_URL = 'http://localhost:3000';
+// Endpoint de Railway (proxy en producción):
+const PROXY_URL = 'https://automatizaciondataexcel-production.up.railway.app';
 
-// Endpoint de Railway (descomentar y reemplazar cuando el proxy esté desplegado):
-// const PROXY_URL = 'https://TU-PROXY.up.railway.app';
+// Endpoint local del proxy (para probar en tu máquina, rama Proxy):
+// const PROXY_URL = 'http://localhost:3000';
 
 const form = document.getElementById('exportForm');
 const input = document.getElementById('reportInput');
