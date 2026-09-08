@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exportador de Reportes a Excel</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Material+Icons&display=swap" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <div class="topbar">
+        <div class="brand">
+            <i class="material-icons">grid_on</i>
+            <span>Reportes a Excel</span>
+        </div>
+        <div class="theme-switch">
+            <label class="switch">
+                <input type="checkbox" id="darkModeToggle" onchange="toggleDarkMode()" />
+                <span class="slider"></span>
+            </label>
+            <span id="darkModeLabel">🌙 Modo oscuro</span>
+        </div>
+    </div>
+
+    <main class="container">
+        <section class="card">
+            <h1>Descarga tu reporte en Excel</h1>
+            <p class="subtitle">Escribe el nombre del reporte y genera el archivo automáticamente.</p>
+
+            <form id="exportForm" autocomplete="off">
+                <label for="reportInput">Nombre del reporte</label>
+                <div class="input-row">
+                    <i class="material-icons input-icon">search</i>
+                    <input
+                        type="text"
+                        id="reportInput"
+                        name="reportInput"
+                        placeholder="Ej: pdv_nutresa"
+                        required
+                    />
+                    <button type="submit" id="submitBtn">
+                        <i class="material-icons">file_download</i>
+                        <span>Generar Excel</span>
+                    </button>
+                </div>
+            </form>
+
+            <div id="results" class="results" aria-live="polite"></div>
+        </section>
+
+        <p class="hint">
+            El reporte se descarga en formato <strong>.xlsx</strong>, listo para compartir.
+        </p>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
