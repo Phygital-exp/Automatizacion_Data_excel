@@ -26,12 +26,21 @@ if (!JSON_TO_EXCEL_TOKEN) {
     console.warn("⚠️  JSON_TO_EXCEL_TOKEN no está configurado. Define la variable de entorno JSON_TO_EXCEL_TOKEN.");
 }
 
+// Algunos WAF bloquean el User-Agent por defecto de node-fetch por parecer un bot;
+// se manda uno de navegador para evitar ese bloqueo.
+const COMMON_HEADERS = {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36",
+    Accept: "application/json, text/plain, */*",
+};
+
 const REPORT_HEADERS = {
+    ...COMMON_HEADERS,
     Authorization: `Token ${API_TOKEN}`,
     "Content-Type": "application/json",
 };
 
 const JSON_TO_EXCEL_HEADERS = {
+    ...COMMON_HEADERS,
     Authorization: `Token ${JSON_TO_EXCEL_TOKEN}`,
     "Content-Type": "application/json",
 };
