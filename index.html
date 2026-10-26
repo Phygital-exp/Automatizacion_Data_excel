@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exportador de Reportes a Excel</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Material+Icons&display=swap" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+</head>
+<body>
+    <div class="topbar">
+        <div class="brand">
+            <i class="material-icons">grid_on</i>
+            <span>Reportes a Excel</span>
+        </div>
+        <div class="theme-switch">
+            <label class="switch">
+                <input type="checkbox" id="darkModeToggle" onchange="toggleDarkMode()" />
+                <span class="slider"></span>
+            </label>
+            <span id="darkModeLabel">🌙 Modo oscuro</span>
+        </div>
+    </div>
+
+    <main class="container">
+        <section class="card">
+            <h1>Descarga tu reporte en Excel</h1>
+            <p class="subtitle">Busca la base por su nombre, filtra por la columna que quieras y descarga el archivo.</p>
+
+            <form id="exportForm" autocomplete="off">
+                <label for="reportInput">Nombre del reporte</label>
+                <div class="input-row">
+                    <i class="material-icons input-icon">search</i>
+                    <input
+                        type="text"
+                        id="reportInput"
+                        name="reportInput"
+                        placeholder="Ej: pdv_nutresa"
+                        required
+                    />
+                    <button type="submit" id="submitBtn">
+                        <i class="material-icons">manage_search</i>
+                        <span>Buscar base</span>
+                    </button>
+                </div>
+            </form>
+
+            <div id="results" class="results" aria-live="polite"></div>
+
+            <section id="filtros" class="filtros hidden" aria-live="polite">
+                <div class="filtros-head">
+                    <div>
+                        <div class="filtros-titulo">Filtrar la base</div>
+                        <div class="field-hint" id="infoBase"></div>
+                    </div>
+                    <a class="download-link secundario" id="descargaCompleta" target="_blank" rel="noopener noreferrer">
+                        <i class="material-icons">file_download</i>
+                        Completo
+                    </a>
+                </div>
+
+                <div id="listaFiltros"></div>
+                <button type="button" class="btn-sec" id="agregarFiltro">
+                    <i class="material-icons">add</i>
+                    Agregar filtro
+                </button>
+
+                <div class="range-row">
+                    <div>
+                        <label for="filaDesde">Desde la fila (opcional)</label>
+                        <input type="number" id="filaDesde" min="1" step="1" placeholder="1" inputmode="numeric" />
+                    </div>
+                    <div>
+                        <label for="filaHasta">Hasta la fila (opcional)</label>
+                        <input type="number" id="filaHasta" min="1" step="1" placeholder="Última" inputmode="numeric" />
+                    </div>
+                </div>
+                <p class="field-hint">Elige la columna, la condición y lo que buscas; puedes combinar varios filtros. Las filas cuentan desde el primer registro (fila 1), debajo de los títulos.</p>
+
+                <div class="conteo" id="conteo"></div>
+                <div class="vista-wrap"><table id="vista"></table></div>
+
+                <button type="button" class="download-link" id="descargarFiltrado">
+                    <i class="material-icons">file_download</i>
+                    Descargar Excel
+                </button>
+            </section>
+        </section>
+
+        <p class="hint">
+            El reporte se descarga en formato <strong>.xlsx</strong>, listo para compartir.
+        </p>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
