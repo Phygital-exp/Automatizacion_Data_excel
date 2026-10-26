@@ -27,7 +27,7 @@
     <main class="container">
         <section class="card">
             <h1>Descarga tu reporte en Excel</h1>
-            <p class="subtitle">Escribe el nombre del reporte y genera el archivo automáticamente.</p>
+            <p class="subtitle">Busca la base por su nombre, filtra por la columna que quieras y descarga el archivo.</p>
 
             <form id="exportForm" autocomplete="off">
                 <label for="reportInput">Nombre del reporte</label>
@@ -41,10 +41,31 @@
                         required
                     />
                     <button type="submit" id="submitBtn">
-                        <i class="material-icons">file_download</i>
-                        <span>Generar Excel</span>
+                        <i class="material-icons">manage_search</i>
+                        <span>Buscar base</span>
                     </button>
                 </div>
+            </form>
+
+            <div id="results" class="results" aria-live="polite"></div>
+
+            <section id="filtros" class="filtros hidden" aria-live="polite">
+                <div class="filtros-head">
+                    <div>
+                        <div class="filtros-titulo">Filtrar la base</div>
+                        <div class="field-hint" id="infoBase"></div>
+                    </div>
+                    <a class="download-link secundario" id="descargaCompleta" target="_blank" rel="noopener noreferrer">
+                        <i class="material-icons">file_download</i>
+                        Completo
+                    </a>
+                </div>
+
+                <div id="listaFiltros"></div>
+                <button type="button" class="btn-sec" id="agregarFiltro">
+                    <i class="material-icons">add</i>
+                    Agregar filtro
+                </button>
 
                 <div class="range-row">
                     <div>
@@ -56,10 +77,16 @@
                         <input type="number" id="filaHasta" min="1" step="1" placeholder="Última" inputmode="numeric" />
                     </div>
                 </div>
-                <p class="field-hint">La fila 1 es el primer registro, debajo de los títulos. Si dejas los campos vacíos se descarga el reporte completo.</p>
-            </form>
+                <p class="field-hint">Elige la columna, la condición y lo que buscas; puedes combinar varios filtros. Las filas cuentan desde el primer registro (fila 1), debajo de los títulos.</p>
 
-            <div id="results" class="results" aria-live="polite"></div>
+                <div class="conteo" id="conteo"></div>
+                <div class="vista-wrap"><table id="vista"></table></div>
+
+                <button type="button" class="download-link" id="descargarFiltrado">
+                    <i class="material-icons">file_download</i>
+                    Descargar Excel
+                </button>
+            </section>
         </section>
 
         <p class="hint">
