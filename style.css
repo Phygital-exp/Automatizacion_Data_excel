@@ -286,3 +286,66 @@ form label {
     color: var(--text-muted);
     font-size: 13px;
 }
+
+/* Filtro por rango de filas */
+.range-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 12px;
+    margin-top: 16px;
+}
+
+.range-row input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--bg);
+    color: var(--text);
+    font: 14px "Inter", system-ui, sans-serif;
+}
+
+.field-hint {
+    margin: 8px 0 0;
+    color: var(--text-muted);
+    font-size: 12px;
+}
+
+.state-card .detalle {
+    margin-top: 6px;
+    font-size: 13px;
+}
+
+button.download-link {
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+}
+
+/* Celulares: el campo del reporte y su botón no caben en una sola línea */
+.input-row input {
+    min-width: 0;
+}
+
+@media (max-width: 520px) {
+    .topbar {
+        padding: 16px;
+    }
+
+    .container {
+        padding: 24px 16px;
+    }
+
+    .card {
+        padding: 24px 18px;
+    }
+
+    .input-row {
+        flex-wrap: wrap;
+    }
+
+    .input-row button {
+        width: 100%;
+        justify-content: center;
+    }
+}
